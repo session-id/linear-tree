@@ -152,7 +152,8 @@ def _parallel_binning_fit(split_feat, _self, X, y,
                                    weights=weights[mask], **largs_right)
                 wloss_right = loss_right * (weights[mask].sum() / weights.sum())
 
-            total_loss = round(wloss_left + wloss_right, 5)
+            # total_loss = round(wloss_left + wloss_right, 5)
+            total_loss = wloss_left + wloss_right
 
             # store if best
             if total_loss < loss:
@@ -363,7 +364,7 @@ class _LinearTree(BaseEstimator):
         loss = CRITERIA[self.criterion](
             model, X[:, self._linear_features], y,
             weights=weights, **largs)
-        loss = round(loss, 5)
+        # loss = round(loss, 5)
 
         self._nodes[''] = Node(
             id=0,
@@ -811,8 +812,8 @@ class _LinearTree(BaseEstimator):
                                                   shape='rectangle'))
 
             else:
-                msg = "id_node: {}\nloss: {:.4f}\nsamples: {}".format(
-                    n, summary[n]['loss'], summary[n]['samples'])
+                msg = "id_node: {}\nloss: {:.4f}\nsamples: {}\nbeta: {}".format(
+                    n, summary[n]['loss'], summary[n]['samples'], summary[n]['models'].coef_)
                 graph.add_node(pydot.Node(n, label=msg))
 
         # add edges

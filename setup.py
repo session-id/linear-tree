@@ -3,8 +3,8 @@ from setuptools import setup, find_packages
 
 HERE = pathlib.Path(__file__).parent
 
-VERSION = '0.3.5'
-PACKAGE_NAME = 'linear-tree'
+VERSION = '0.3.6'
+PACKAGE_NAME = 'vatic-linear-tree'
 AUTHOR = 'Marco Cerliani'
 AUTHOR_EMAIL = 'cerlymarco@gmail.com'
 URL = 'https://github.com/cerlymarco/linear-tree'
